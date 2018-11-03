@@ -13,8 +13,8 @@
 
   var trainName = "";
   var destination = "";
-  var trainTime = 0;
   var frequency = 0;
+  var currentTime = moment().
 
 
 
@@ -25,14 +25,16 @@
       // Set the variables equal to the stored values.
       trainName = snapshot.val().trainName;
       destination = snapshot.val().destination;
-      trainTime = snapshot.val().trainTime;
+      firstTime = snapshot.val().firstTime;
       frequency = snapshot.val().frequency;
     }
-  
+    
+    minutesAway = nextArrival
+
     // log the values to console and display them on the page.
     console.log(trainName);
     console.log(destination);
-    console.log(trainTime);
+    console.log(firstTime);
     console.log(frequency);
     console.log(nextArrival);
     console.log(minutesAway);
@@ -53,15 +55,17 @@
 $("#submit").on("click", function(event) {
   event.preventDefault();
   // Get the input values
-  trainName = $("#train-name").val().trim();
-  destination = $("#destination").val().trim();
-  trainTime = $("#train-time").val().trim();
-  frequency = $("#frequency").val().trim();
+  trainName = $("#train-name-input").val().trim();
+  destination = $("#destination-input").val().trim();
+  trainTime = $("#train-time-input").val().trim();
+  frequency = $("#frequency-input").val().trim();
 
   // Save the new train info in Firebase 
     database.ref().set({
-      highBidder: bidderName,
-      highPrice: bidderPrice
+      trainName: trainName,
+      destination: destination,
+      trainTime: trainTime,
+      frequency: frequency
     });
 
   });
